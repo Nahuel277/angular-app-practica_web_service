@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Translate Text</h2>
+        <textarea [(ngModel)]="text" class="form-control" rows="5" placeholder="Enter text to translate"></textarea>
+        <br>
+        <label for="sourceText">Source:</label>
+        <input type="text" id="sourceText" name="sourceText" value="" [(ngModel)]="sourceText">
+        <label for="targetText">Target:</label>
+        <input type="text" id="targetText" name="targetText" value="" [(ngModel)]="targetText">
+        <button type="button" id="traducir" (click)="translate()">Traducir</button>
+        <textarea class="form-control" rows="5" readonly>{{ textTraducido }}</textarea>
+      </div>
+    </div>
+</div>

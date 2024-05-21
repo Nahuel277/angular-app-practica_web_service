@@ -1,0 +1,27 @@
+<main>
+  <div class="container">
+    <button type="button" class="btn btn-primary my-2" (click)="getListaDeNoticias()">Obtener noticias</button>
+    <div class="row">
+      <div class="col-lg-10 col-md-9 col-sm-2 col-xs-1">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" *ngFor="let noticia of noticias">
+            <div class="card h-100">
+              <img [src]="noticia.mainMedia[0].original.url" class="card-img-top" alt="Imagen de la noticia" />
+              <div class="card-body">
+                <h5 class="card-title">{{ noticia.title }}</h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-2 col-md-3 col-sm-2 col-xs-1">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Publicidad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
