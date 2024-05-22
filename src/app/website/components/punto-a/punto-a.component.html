@@ -1,12 +1,26 @@
-<div class="container">
-  <form>
-    <p>Texto a traducir</p>
-    <textarea name="texto" id="texto"  [(ngModel)]="texto"></textarea>
-    <label for="source">Source:</label>
-    <input type="text" id="source" name="source" value="" [(ngModel)]="source">
-    <label for="target">Target:</label>
-    <input type="text" id="target" name="target" value="" [(ngModel)]="target">
-    <button class="btn btn-primary" type="button" id="traducir" (click)="traducirTexto()">Enviar</button>
-    <p>Resultado: {{textoTraducido}}</p>
+<div class="container mt-5 col-6">
+  <form [formGroup]="translateForm" (ngSubmit)="onTranslate()">
+    <div class="mb-3">
+      <label for="texto" class="form-label">Texto a traducir</label>
+      <textarea name="texto" id="texto" class="form-control" formControlName="text" rows="4"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="source" class="form-label">Source Language</label>
+      <select id="sourceLanguage" class="form-select" formControlName="sourceLanguage">
+        <option *ngFor="let lang of languages" [value]="lang.code">{{ lang.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="target" class="form-label">Target Language</label>
+      <select id="targetLanguage" class="form-select" formControlName="targetLanguage">
+        <option *ngFor="let lang of languages" [value]="lang.code">{{ lang.name }}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Traducir</button>
   </form>
+  <div class="mt-4">
+    <label for="traducido" class="form-label">Resultado:</label>
+    <textarea name="traducido" id="traducido" class="form-control" rows="4" readonly>{{ translatedText }}</textarea>
+    <button class="btn btn-secondary mt-2" (click)="copyToClipboard()"><i class="bi bi-copy"></i></button>
+  </div>
 </div>
