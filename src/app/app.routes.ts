@@ -6,6 +6,7 @@ import { PuntoAComponent } from './website/components/punto-a/punto-a.component'
 import { PuntoCComponent } from './website/components/punto-c/punto-c.component';
 
 export const routes: Routes = [
+    {path: '', redirectTo: 'traductor', pathMatch: 'full'},
     {path: 'music', component: MusicComponent},
     {path: 'youtube', component: YoutubeComponent},
     {path: 'noticias', component: PuntoBComponent},
