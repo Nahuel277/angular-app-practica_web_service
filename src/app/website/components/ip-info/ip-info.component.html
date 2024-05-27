@@ -1,0 +1,98 @@
+<div class="container mt-4 d-flex justify-content-center">
+    <form class="d-flex align-items-center col-8">
+      <input class="form-control mx-3" name="text" placeholder="Buscar" [(ngModel)]="ipInfo">
+      <button class="btn btn-primary col-3" type="submit" (click)="enviarIpInfo()">
+        <i class="bi bi-search"></i> Buscar
+      </button>
+    </form>
+</div>
+<div class="container mt-5" *ngIf="showView">
+
+    <h2>Resultados Encontrados</h2>
+
+    <table class="table table-bordered" *ngFor="let info of infoList">
+        <thead>
+            <tr>
+                <th colspan="2">Información de la IP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>País:</td>
+                <td><input type="text" class="form-control" [value]="info.country" readonly /></td>
+            </tr>
+            <tr>
+                <td>Ciudad:</td>
+                <td><input type="text" class="form-control" [value]="info.city" readonly /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered" *ngFor="let info of infoList">
+        <thead>
+            <tr>
+                <th colspan="2">Información de la Ubicación de la IP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fecha del lugar:</td>
+                <td><input type="text" class="form-control" [value]="info.timezone.date | date: 'dd/MM/yyyy'" readonly /></td>
+            </tr>
+            <tr>
+                <td>Hora del lugar:</td>
+                <td><input type="text" class="form-control" [value]="info.timezone.time" readonly /></td>
+            </tr>
+            <tr>
+                <td>Zona Horaria:</td>
+                <td><input type="text" class="form-control" [value]="info.timezone.id" readonly /></td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngFor="let info of infoList">
+        <a [href]="'https://maps.google.com/?q=' + info.latitude + ',' + info.longitude" class="btn btn-primary">Ir al Lugar</a>
+    </div>
+    <!-- Button trigger modal -->
+    <div *ngFor="let info of infoList">
+        <button type="button" class="btn btn-secondary my-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerDireccion(info.latitude, info.longitude)">Direccion</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Resultado de la direccion</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" *ngFor="let resul of directioResult">
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Calle</label>
+                        <div class="col-sm-10">
+                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" [value]="resul.address">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Numero</label>
+                        <div class="col-sm-10">
+                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" [value]="resul.addressnumber">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
+                        <div class="col-sm-10">
+                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" [value]="resul.city">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Provincia</label>
+                        <div class="col-sm-10">
+                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" [value]="resul.region">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

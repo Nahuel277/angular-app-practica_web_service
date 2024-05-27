@@ -1,10 +1,10 @@
 <div class="container">
-    <form class="row g-3" (ngSubmit)="search()">
+    <form class="row g-3">
         <input [(ngModel)]="text" name="texto" class="form-control" placeholder="Buscar" type="text">
-        <button type="submit" class="btn btn-primary mb-3"><i class="bi bi-search mx-2"></i>Buscar</button>
+        <button type="submit" class="btn btn-primary mb-3" (click)="search()"><i class="bi bi-search mx-2"></i>Buscar</button>
     </form>
   </div>
-  
+
   <div class="container">
     <table class="table">
       <thead>
@@ -20,9 +20,6 @@
           <th scope="row">{{ video.id }}</th>
           <td>{{ video.title }}</td>
           <td><a href="{{ video.url }}">{{ video.url }}</a></td>
-          <td>{{ video.channel.name }}
-            <img src="{{video.channel.icon}}" alt="" width="100px" height="100px">
-          </td>
         </tr>
       </tbody>
     </table>

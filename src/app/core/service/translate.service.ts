@@ -25,12 +25,12 @@ export class TranslateService {
         'content-type': 'application/x-www-form-urlencoded',
         'X-RapidAPI-Key': '3292c03d46msh7286b8e42dc8e13p18612ajsn77050e0541ce',
         'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
-      })
-    };
-    const body = new HttpParams()
+      }),
+      params: new HttpParams()
       .set('q', text)
       .set('target', target)
-      .set('source', source);
-    return this.http.post("https://google-translate1.p.rapidapi.com/language/translate/v2", body, httpOptions);
+      .set('source', source)
+    };
+    return this.http.post("https://google-translate1.p.rapidapi.com/language/translate/v2", httpOptions);
   }
 }
